@@ -8,12 +8,14 @@ interface CardProps{
 
 
 function Card({title,link,type}:CardProps) {
+
     const getYouTubeEmbedLink = (url: string) => {
         const videoIdMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
         return videoIdMatch 
           ? `https://www.youtube.com/embed/${videoIdMatch[1]}?autoplay=0&mute=0` 
           : link;
       }
+      
   return (
     <div>
         <div className="p-8 bg-white rounded-md  shadow-md border-gray-200 max-w-96 border">

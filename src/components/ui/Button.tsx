@@ -5,6 +5,7 @@ interface ButtonInterface {
     size: "lg" | "sm" | "md";
     startIcon?: ReactElement;
     variant: "primary" | "secondary";
+    onClick?:()=>void
 }
 
 const sizeStyles = {
@@ -20,7 +21,7 @@ const variantStyles = {
 
 export function Button(props: ButtonInterface) {
     
-    return <button className={sizeStyles[props.size] + " " + variantStyles[props.variant]}>
+    return <button onClick={props.onClick}className={sizeStyles[props.size] + " " + variantStyles[props.variant]}>
         <div className="flex items-center">
             <span className="text-xs pr-2">
                 {props.startIcon}
