@@ -7,9 +7,12 @@ import { ShareIcon } from '../Icons/ShareIcon'
 import CreateModel from '../components/ui/CreateModel'
 import { useState } from 'react'
 import Sidebar from '../components/ui/Sidebar'
+import { useContent } from '../hooks/useContent'
 
 function Dashboard() {
   const[model,setModel]=useState(false)
+  const {contents} = useContent();
+
   return (
     <>
     <Sidebar/>
@@ -17,18 +20,21 @@ function Dashboard() {
       <CreateModel open={model} onClose={()=>{
         setModel(false);
       }}/>
-     <div className='flex justify-end gap-4'>
 
+     <div className='flex justify-end gap-4'>
       <Button onClick={()=>{
         setModel(true)
       }} title="Create" size="md" startIcon={<PlusIcon/>} variant="secondary"/>
       <Button title="Share" size="md" startIcon={<ShareIcon/>} variant="primary"/>
      </div>
-     <div className='flex  gap-4'>
-      <Card type='twitter' link='https://x.com/dev_X_100/status/1863287559423693117' title="first tweet"/>
-      <Card type='youtube' link='https://www.youtube.com/watch?v=6hNlpOSDr1w' title="first yt"/>
 
-    </div>
+     <div className="flex gap-4 flex-wrap">
+        {contents.map(({type, link, title}) => <Card 
+            type={type}
+            link={link}
+            title={title}
+        />)}
+      </div>
     </div>
     </>
   )
