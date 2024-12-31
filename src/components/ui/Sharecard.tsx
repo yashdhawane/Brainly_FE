@@ -7,11 +7,11 @@ interface CardProps{
     title:string;
     link:string;
     type:"twitter" |"youtube";
-    ondelete?:()=>void;
+    
 }
 
 
-function Card({title,link,type,ondelete}:CardProps) {
+function Sharecard({title,link,type}:CardProps) {
 
     const getYouTubeEmbedLink = (url: string) => {
         const videoIdMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -36,9 +36,7 @@ function Card({title,link,type,ondelete}:CardProps) {
                         <Opentab/>
                     </a>
                 </div>
-                <div className="text-gray-500 cursor-pointer" onClick={ondelete} >
-                   <Delete/>
-                </div>
+               
             </div>
            </div>
            <div className="pt-4">
@@ -58,4 +56,4 @@ function Card({title,link,type,ondelete}:CardProps) {
   )
 }
 
-export default Card
+export default Sharecard

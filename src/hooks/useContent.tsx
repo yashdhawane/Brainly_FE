@@ -15,7 +15,23 @@ export function useContent() {
                 setContents(response.data.content)
             })
     }
-
+    const deleteContent = async (contentId: any) => {
+        console.log(contentId)
+       const response= await axios.delete(`${BACKEND_URL}/api/v1/content`, {
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            },
+            data: {
+                contentId
+            }
+        });
+        if (response.status === 200) {
+            
+            refresh();
+            return true;
+        }
+        throw new Error(response.data.message);
+    };
     useEffect(() => {
         refresh()
         let interval = setInterval(() => {
@@ -27,5 +43,5 @@ export function useContent() {
         }
     }, [])
 
-    return {contents};
+    return {contents,deleteContent};
 }
